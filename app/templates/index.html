@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block main-content %}
+    <!-- main -->
+    <main class="page">
+      <!-- header -->
+      <header class="hero">
+        <div class="hero-container">
+          <div class="hero-text">
+            <h1>FoodMood</h1>
+            <h4>no fluff, just recipes</h4>
+          </div>
+        </div>
+      </header>
+      <!-- end of header -->
+      <section class="recipes-container">
+        <!-- tag container -->
+        <div class="tags-container">
+          <h4>recipes</h4>
+          <div class="tags-list">
+            <a href="{% url 'create_recipe' %}">Create Recipe</a>
+            <a href='{% url "update_recipe" 2 %}'>Update Recipe</a>
+            <a href="{% url 'delete_recipe' 5 %}">Delete Recipe</a>
+            <!-- <a href="tag-template.html">Food (4)</a> -->
+          </div>
+        </div>
+        <!-- end of tag container -->
+        <!-- recipes list -->
+        <div class="recipes-list">
+          <!-- single recipe -->
+          {% for i in veg  %}
+            <a href="{% url 'recipe-detail' i.id %}" class="recipe">
+            <img
+              src="{{i.recipe_image.url}}"
+              class="img recipe-img"
+              alt=""
+            />
+            <h5>{{i.recipe_name}}</h5>
+            <p>Prep : 15min | Cook : 5min</p>
+          </a>
+          {% endfor %}
+          <!-- end of single recipe -->
+          <!-- single recipe -->
+          {% for nv in nonveg %}
+            
+         <a href="{% url 'recipe-detail' nv.id %}" class="recipe">
+            <img
+              src="{{nv.recipe_image.url}}"
+              class="img recipe-img"
+              alt=""
+            />
+            <h5>{{nv.recipe_name}}</h5>
+            <p>Prep : 15min | Cook : 5min</p>
+          </a>
+          {% endfor %}
+          <!-- end of single recipe -->
+          <!-- single recipe -->
+          {% for o in other %}
+          <a href="{% url 'recipe-detail' o.id %}" class="recipe">
+            <img
+              src="{{o.recipe_image.url}}"
+              class="img recipe-img"
+              alt=""
+            />
+            <h5>{{o.recipe_name}}</h5>
+            <p>Prep : 15min | Cook : 5min</p>
+          </a>
+          {% endfor %}
+          <!-- end of single recipe -->
+          </div>
+        <!-- end of recipes list -->
+      </section>
+    </main>
+    <!-- end of main -->
+{% endblock main-content %}
