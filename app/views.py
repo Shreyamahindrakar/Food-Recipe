@@ -30,10 +30,13 @@ class RecipeDetailView(View):
 def createrecipe(request):
     form = RecipeForm()
     if request.method == 'POST':
-        form = RecipeForm(request.POST)
+        form = RecipeForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect("/")
+            messages.success(request, "Successfully added!")
+            return redirect('/')
+        else:
+            messages.error(request, "Please fill in all the fields.")
     
     context={'form':form}
     return render(request, 'createrecipe.html', context)

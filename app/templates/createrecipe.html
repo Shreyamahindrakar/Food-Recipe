@@ -1,16 +1,23 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %} 
 {% load static %}
 {% block title %}Create recipe{% endblock title %}
 {% block main-content %}
     <div class="row">
         <div class="col-md-6">
             <div class="card card-body">
+                
     
-                <form action="" method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{form.as_p}}
-                    
-                    <input type="submit" name="Submit">
+                    <h2 class="blog_heading">Create Recipe</h2>
+                    <fieldset class="form-group" id="new">
+                        
+                        {{ form|crispy}}
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-outline-info" type="submit">Submit</button>
+                    </div>
                 </form>
     
             </div>
